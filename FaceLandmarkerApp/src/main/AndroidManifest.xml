@@ -6,7 +6,9 @@
     <application
         android:name=".platform.MainApplication"
         android:allowBackup="false"
+        android:icon="@mipmap/ic_spatial_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_spatial_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.Features">
         <meta-data android:name="pico.spatial.use_experimental_api" android:value="1" />
