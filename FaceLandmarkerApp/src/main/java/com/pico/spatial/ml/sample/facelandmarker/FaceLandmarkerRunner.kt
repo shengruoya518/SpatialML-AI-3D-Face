@@ -69,6 +69,13 @@ internal class FaceLandmarkerRunner(
     @Volatile var sizeScale = 1f
     @Volatile var paused = false
     @Volatile var tongueRequested = false
+    @Volatile private var reacquireRequested = false
+
+    /** Drops the tracked face; the next frame runs the detector on whoever is in view. */
+    fun reacquire() {
+        reacquireRequested = true
+    }
+
     private var started = false
     private var instance: SpatialMLInstance? = null
 
@@ -126,6 +133,12 @@ internal class FaceLandmarkerRunner(
                         lastFreshAt = SystemClock.elapsedRealtime()
                         delay(50)
                         continue
+                    }
+                    if (reacquireRequested) {
+                        reacquireRequested = false
+                        mutableFrame.value = null
+                        acquire = true
+                        stabilizer.reset()
                     }
                     val frameSettings = lab?.frameSettings()
                     val frameCalibration = frameSettings?.first

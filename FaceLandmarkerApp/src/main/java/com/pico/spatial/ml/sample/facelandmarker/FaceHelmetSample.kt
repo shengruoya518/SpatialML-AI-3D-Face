@@ -7,17 +7,11 @@ import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -25,13 +19,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.pico.spatial.ui.design.Button
 import com.pico.spatial.ui.design.PicoTheme
-import com.pico.spatial.ui.design.Slider
-import com.pico.spatial.ui.design.Text
 import com.pico.spatial.ui.foundation.content.SpatialView
 import com.pico.spatial.ui.platform.containers.closeStage
 import kotlinx.coroutines.CancellationException
@@ -77,8 +67,7 @@ fun FaceHelmetSample() {
     var initialized by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf<String?>(null) }
     var paused by remember { mutableStateOf(false) }
-    var fit by remember { mutableFloatStateOf(1f) }
-    var effect by remember { mutableStateOf(FaceEffect.MESH) }
+    var effect by remember { mutableStateOf(FaceEffect.HELMET) }
     var visible by remember { mutableStateOf(false) }
     val status by runner.status.collectAsStateWithLifecycle()
     DisposableEffect(runner, scene, lab) {
@@ -144,7 +133,7 @@ fun FaceHelmetSample() {
                 } catch (failure: Exception) {
                     // An already measured surface remains usable; do not blink on a shape-upload
                     // miss.
-                    error = "Face surface update failed: ${failure.message}"
+                    error = "特效更新失败，请重新打开应用"
                     Log.e(FaceLandmarkerRunner.TAG, "face_surface_error", failure)
                 }
             }
@@ -161,7 +150,7 @@ fun FaceHelmetSample() {
                         throw cancel
                     } catch (failure: Exception) {
                         scene.hide()
-                        error = "Face effect could not render: ${failure.message}"
+                        error = "特效显示失败，请重新打开应用"
                         Log.e(FaceLandmarkerRunner.TAG, "face_effect_render_error", failure)
                         null
                     }
@@ -189,84 +178,62 @@ fun FaceHelmetSample() {
             initial = { content, attachments ->
                 try {
                     scene.initialize(content, attachments.entity("helmet_controls"))
+                    scene.select(effect)
                     poses.start()
                     initialized = true
                 } catch (cancel: CancellationException) {
                     throw cancel
                 } catch (failure: Exception) {
-                    error = "Face effects could not load: ${failure.message}"
+                    error = "特效加载失败，请重新打开应用"
                     Log.e(FaceLandmarkerRunner.TAG, "helmet_initialization_error", failure)
                 }
             },
             attachments = {
                 AttachmentPanel(id = "helmet_controls") {
-                    Column(
-                        Modifier.size(660.dp, 640.dp).padding(20.dp),
-                        verticalArrangement = Arrangement.spacedBy(12.dp),
-                    ) {
-                        Text(
-                            "Face effects · ${effect.label}",
-                            style = PicoTheme.typography.titleMedium,
-                        )
-                        Text(
+                    FaceSwapStrip(
+                        selected = effect,
+                        enabled = initialized,
+                        paused = paused,
+                        hint =
                             error
                                 ?: when {
-                                    !permission -> "Camera access is needed to find a face."
-                                    paused -> "Paused"
-                                    !initialized -> "Loading face effects…"
-                                    visible -> effect.description
+                                    !permission -> "需要相机权限才能识别人脸"
+                                    paused -> "已暂停"
+                                    !initialized -> "正在加载特效…"
+                                    visible -> null
                                     status.startsWith("SpatialML error") ||
-                                        status.startsWith("Error") -> status
-                                    else -> "Look toward another person to place the effect."
-                                }
-                        )
-                        if (!permission)
-                            Button(
-                                onClick = { permissionLauncher.launch(Manifest.permission.CAMERA) }
-                            ) {
-                                Text("Allow camera")
-                            }
-                        FaceEffectChoices(effect, initialized) { chosen ->
+                                        status.startsWith("Error") -> "识别中断了，请重新打开应用"
+                                    else -> "把头转向想换脸的人"
+                                },
+                        action =
+                            if (permission) null
+                            else
+                                "允许使用相机" to
+                                    {
+                                        permissionLauncher.launch(Manifest.permission.CAMERA)
+                                    },
+                        onSelect = { chosen ->
                             effect = chosen
                             scene.select(chosen)
                             runner.tongueRequested = chosen == FaceEffect.DRAGON
                             runner.setOutputs(chosen.outputs)
-                        }
-                        Text("Accessory / mask fit")
-                        Slider(
-                            value = fit,
-                            onValueChange = {
-                                fit = it
-                                scene.fitScale = it
-                            },
-                            valueRange = .8f..1.2f,
-                        )
-                        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                            Button(
-                                onClick = {
-                                    paused = !paused
-                                    runner.paused = paused
-                                    if (paused) {
-                                        tracking.clear()
-                                        scene.hide()
-                                        visible = false
-                                    }
-                                },
-                                enabled = initialized,
-                            ) {
-                                Text(if (paused) "Resume" else "Pause")
+                        },
+                        onPause = {
+                            paused = !paused
+                            runner.paused = paused
+                            if (paused) {
+                                tracking.clear()
+                                scene.hide()
+                                visible = false
                             }
-                            Button(
-                                onClick = {
-                                    fit = 1f
-                                    scene.fitScale = 1f
-                                }
-                            ) {
-                                Text("Reset fit")
-                            }
-                            Button(onClick = exit) { Text("Close") }
-                        }
-                    }
+                        },
+                        onSwitchPerson = {
+                            runner.reacquire()
+                            tracking.clear()
+                            scene.hide()
+                            visible = false
+                        },
+                    )
                 }
             },
         )
