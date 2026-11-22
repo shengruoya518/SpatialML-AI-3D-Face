@@ -1,0 +1,765 @@
+[
+  {
+    "name": "face_output_1",
+    "sha256": "d1ccc5dadbcc1906af88343d119661a81606ba79e6a711f0e07d46d98d4f0de7",
+    "bytes": 1160,
+    "operators": 1,
+    "backend": "CPU",
+    "inputs": [
+      {
+        "name": "command",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "name": "validity",
+        "shape": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "roi",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "name": "diagnostics",
+        "shape": [
+          1,
+          1,
+          1,
+          32
+        ]
+      },
+      {
+        "name": "camera",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "world_pose",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "shape": [
+          1,
+          1,
+          1,
+          78
+        ]
+      }
+    ]
+  },
+  {
+    "name": "face_output_2",
+    "sha256": "f9924877962d564adba8a5675fab7c0d4473557eb2d17f55a0d6ac63aba0945e",
+    "bytes": 1688,
+    "operators": 1,
+    "backend": "CPU",
+    "inputs": [
+      {
+        "name": "command",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "name": "validity",
+        "shape": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "roi",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "name": "diagnostics",
+        "shape": [
+          1,
+          1,
+          1,
+          32
+        ]
+      },
+      {
+        "name": "camera",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "world_pose",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "raw_landmarks",
+        "shape": [
+          1,
+          1,
+          1,
+          1434
+        ]
+      },
+      {
+        "name": "fit_pose",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "first_scale",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "second_scale",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "depth",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "shape": [
+          1,
+          1,
+          1,
+          1531
+        ]
+      }
+    ]
+  },
+  {
+    "name": "face_output_3",
+    "sha256": "6fd9eb80e66e48abf22134d879bd76f241c30286d071b31da32c2e4c3397bc1f",
+    "bytes": 1688,
+    "operators": 1,
+    "backend": "CPU",
+    "inputs": [
+      {
+        "name": "command",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "name": "validity",
+        "shape": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "roi",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "name": "diagnostics",
+        "shape": [
+          1,
+          1,
+          1,
+          32
+        ]
+      },
+      {
+        "name": "camera",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "world_pose",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "raw_landmarks",
+        "shape": [
+          1,
+          1,
+          1,
+          1434
+        ]
+      },
+      {
+        "name": "fit_pose",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "first_scale",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "second_scale",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "depth",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "shape": [
+          1,
+          1,
+          1,
+          1531
+        ]
+      }
+    ]
+  },
+  {
+    "name": "face_output_4",
+    "sha256": "9551227d74679890122d8bcd0b9a3be247391953074bfe078cd066a115453112",
+    "bytes": 1160,
+    "operators": 1,
+    "backend": "CPU",
+    "inputs": [
+      {
+        "name": "command",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "name": "validity",
+        "shape": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "roi",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "name": "diagnostics",
+        "shape": [
+          1,
+          1,
+          1,
+          32
+        ]
+      },
+      {
+        "name": "camera",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "blendshapes",
+        "shape": [
+          1,
+          1,
+          1,
+          52
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "shape": [
+          1,
+          1,
+          1,
+          114
+        ]
+      }
+    ]
+  },
+  {
+    "name": "face_output_5",
+    "sha256": "44755eec633aad3e6225f9334f72dd7a7be3af83ce2fa88134fa935b84bbe8bc",
+    "bytes": 1264,
+    "operators": 1,
+    "backend": "CPU",
+    "inputs": [
+      {
+        "name": "command",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "name": "validity",
+        "shape": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "roi",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "name": "diagnostics",
+        "shape": [
+          1,
+          1,
+          1,
+          32
+        ]
+      },
+      {
+        "name": "camera",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "world_pose",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "blendshapes",
+        "shape": [
+          1,
+          1,
+          1,
+          52
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "shape": [
+          1,
+          1,
+          1,
+          130
+        ]
+      }
+    ]
+  },
+  {
+    "name": "face_output_6",
+    "sha256": "700b1638b4ed60b89f1f60793a2bba95c714661763d8ac6f60e2b916efe4ae87",
+    "bytes": 1792,
+    "operators": 1,
+    "backend": "CPU",
+    "inputs": [
+      {
+        "name": "command",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "name": "validity",
+        "shape": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "roi",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "name": "diagnostics",
+        "shape": [
+          1,
+          1,
+          1,
+          32
+        ]
+      },
+      {
+        "name": "camera",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "world_pose",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "raw_landmarks",
+        "shape": [
+          1,
+          1,
+          1,
+          1434
+        ]
+      },
+      {
+        "name": "fit_pose",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "first_scale",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "second_scale",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "depth",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "blendshapes",
+        "shape": [
+          1,
+          1,
+          1,
+          52
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "shape": [
+          1,
+          1,
+          1,
+          1583
+        ]
+      }
+    ]
+  },
+  {
+    "name": "face_output_7",
+    "sha256": "98ac88e88c0ba2073022af68dcabc3388e980151179d6d7b1f291429acabb947",
+    "bytes": 1792,
+    "operators": 1,
+    "backend": "CPU",
+    "inputs": [
+      {
+        "name": "command",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "name": "validity",
+        "shape": [
+          1,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "name": "roi",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "name": "diagnostics",
+        "shape": [
+          1,
+          1,
+          1,
+          32
+        ]
+      },
+      {
+        "name": "camera",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "world_pose",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "raw_landmarks",
+        "shape": [
+          1,
+          1,
+          1,
+          1434
+        ]
+      },
+      {
+        "name": "fit_pose",
+        "shape": [
+          1,
+          1,
+          1,
+          16
+        ]
+      },
+      {
+        "name": "first_scale",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "second_scale",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "depth",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "blendshapes",
+        "shape": [
+          1,
+          1,
+          1,
+          52
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "shape": [
+          1,
+          1,
+          1,
+          1583
+        ]
+      }
+    ]
+  },
+  {
+    "name": "face_blend_input",
+    "sha256": "9d67a319e38f5be1b40dcb480955e6ef8e8ce85938d08992325c56ee0138162c",
+    "bytes": 9672,
+    "operators": 27,
+    "backend": "CPU",
+    "inputs": [
+      {
+        "name": "raw_landmarks",
+        "shape": [
+          1,
+          1,
+          1,
+          1434
+        ]
+      },
+      {
+        "name": "roi",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "blend_input",
+        "shape": [
+          1,
+          1,
+          1,
+          292
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Face Calibration</title>
+<style>
+:root{font-family:system-ui,-apple-system,sans-serif;color:#e8eef7;background:#101722;color-scheme:dark}*{box-sizing:border-box}body{max-width:1140px;margin:0 auto;padding:32px 24px}h1{font-size:30px;margin:0 0 8px}p{color:#aab8cb;line-height:1.5}header{display:flex;justify-content:space-between;gap:24px;align-items:center}.badge{padding:9px 14px;border-radius:30px;background:#283448;white-space:nowrap}.good{background:#164e3c;color:#adf0ce}.warn{background:#584327;color:#ffe0aa}.toolbar,.actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0}.toolbar label{margin-right:auto}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{padding:22px;background:#192435;border:1px solid #314057;border-radius:16px}.card h2{font-size:20px;margin:0 0 6px}.description{font-size:14px;color:#aab8cb;margin:0 0 20px}.adjust{display:flex;gap:10px;align-items:center}.adjust input{min-width:0;width:100%;text-align:center;font-size:25px;font-variant-numeric:tabular-nums}.adjust button{font-size:23px;min-width:52px}button,select,input[type=number]{font:inherit;border:1px solid #4a5c75;background:#202f45;color:inherit;border-radius:9px;padding:11px 14px}button{cursor:pointer}button:hover:not(:disabled){background:#314864}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #76c7ff;outline-offset:3px}button.primary{background:#2679cf;border-color:#4198ee}button:disabled,input:disabled{opacity:.45;cursor:default}input[type=range]{width:100%;margin:22px 0 10px;accent-color:#6db8ff;cursor:pointer}select{margin-left:8px}input[type=number]{appearance:textfield}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}small{color:#aab8cb}.readback{display:flex;justify-content:space-between;gap:10px;margin-top:8px;font-size:13px;font-variant-numeric:tabular-nums}.readback strong{color:#e8eef7}.status{background:#182333;border-radius:12px;padding:17px 20px;margin-top:20px;line-height:1.65}.status p{margin:3px 0}.error{color:#ffb6b6;min-height:24px}footer{font-size:13px;color:#9baac0;margin-top:25px;line-height:1.6}.help{font-size:13px;color:#aab8cb;margin-top:15px}.pending{color:#ffe0aa}.serial{font-family:ui-monospace,monospace;font-size:12px}@media(max-width:720px){.grid{grid-template-columns:1fr}header{align-items:flex-start;flex-direction:column}body{padding:20px}}
+</style>
+</head>
+<body>
+<header><div><h1>Face Calibration</h1><p>Adjust on your computer. Watch the mesh update in the headset.</p></div><span id="connection" class="badge">Connecting…</span></header>
+<div class="toolbar"><label>Button &amp; keyboard step <select id="step"><option>0.5</option><option>1</option><option selected>5</option><option>10</option><option>25</option></select> px</label><span id="sync">Reading headset values…</span></div>
+<main class="grid" id="controls"></main>
+<section class="status"><strong>Automatic recording session</strong>
+<p>Start a Spatial recording in the headset, then start here. The sequence runs on the headset and continues if USB is disconnected. Keep both heads still until the pose prompt changes.</p>
+<div class="actions"><button class="primary" id="auto-check" data-command="auto_check">Capture one check sample</button><button id="auto-start" data-command="auto_start">Start full trial sequence</button><button id="auto-cancel" data-command="auto_cancel">Cancel sequence</button></div>
+<p id="auto-status" aria-live="polite">Waiting for headset status.</p></section>
+<div class="actions"><button class="primary" id="save" data-command="save_values">Save on headset</button><button id="load" data-command="load_values">Load saved</button><button id="reset" data-command="reset_c">Reset to C</button></div>
+<p id="error" class="error" role="alert"></p>
+<section class="status" aria-live="polite"><strong id="mode">Waiting for the app</strong><p id="runtime">Keep SpatialML Face Calibration open and USB connected.</p><p id="profile"></p><small id="frame"></small></section>
+<footer>Changes apply automatically after a short pause in input. Type a value, use the slider, or use − / +. Arrow keys in a number field use the chosen step; Shift + Arrow uses 10× that step.<br>Save on headset keeps all four current values for the next launch. The readback below each control shows what the headset accepted and what its latest camera frame used.<br><span class="serial" id="serial"></span></footer>
+<script>
+const token='__TOKEN__';
+const specs={fx:{label:'Horizontal focal length',min:250,max:6000},fy:{label:'Vertical focal length',min:250,max:6000},cx:{label:'Horizontal principal point',min:0,max:3248},cy:{label:'Vertical principal point',min:0,max:2464}};
+const controls={};let state=null,connected=false,busy=false,action=null,editingVersion=0,timer=null;const pending=new Map();
+const $=id=>document.getElementById(id);const fmt=n=>Number.isFinite(n)?n.toFixed(2):'—';
+for(const [key,spec] of Object.entries(specs)){
+ const card=document.createElement('section');card.className='card';
+ card.innerHTML=`<h2>${key}</h2><p class="description">${spec.label}</p><div class="adjust"><button aria-label="Decrease ${key}">−</button><input type="number" aria-label="${spec.label} in pixels" min="${spec.min}" max="${spec.max}" step="any"><button aria-label="Increase ${key}">+</button></div><input type="range" min="${spec.min}" max="${spec.max}" step="0.1" aria-label="${spec.label} slider"><div class="readback"><span>Headset <strong class="requested">—</strong></span><span>Frame used <strong class="applied">—</strong></span></div>`;
+ $('controls').append(card);const number=card.querySelector('input[type=number]'),slider=card.querySelector('input[type=range]'),buttons=card.querySelectorAll('button');
+ controls[key]={number,slider,buttons,requested:card.querySelector('.requested'),applied:card.querySelector('.applied')};
+ const bump=amount=>edit(key,(pending.get(key)?.value??state?.values[key]??0)+amount);
+ buttons[0].onclick=()=>bump(-Number($('step').value));buttons[1].onclick=()=>bump(Number($('step').value));
+ number.oninput=()=>{const value=number.valueAsNumber;if(Number.isFinite(value)&&value>=spec.min&&value<=spec.max)edit(key,value,false);else $('error').textContent=`${key} must be between ${spec.min} and ${spec.max} px.`;};
+ number.onblur=()=>{if(!number.checkValidity()||!Number.isFinite(number.valueAsNumber)){number.value=fmt(pending.get(key)?.value??state?.values[key]);$('error').textContent='Invalid entry was not sent.';}else if(state&&!pending.has(key)){number.value=fmt(state.values[key]);}};
+ number.onkeydown=e=>{if(e.key==='ArrowUp'||e.key==='ArrowDown'){e.preventDefault();bump((e.key==='ArrowUp'?1:-1)*Number($('step').value)*(e.shiftKey?10:1));}if(e.key==='Enter'){number.blur();schedule(0);}};
+ slider.oninput=()=>edit(key,Number(slider.value));
+}
+function edit(key,value,updateNumber=true){if(!connected||state?.locked||state?.automatic?.active||action)return;value=Math.min(specs[key].max,Math.max(specs[key].min,value));pending.set(key,{value,version:++editingVersion});if(updateNumber)controls[key].number.value=fmt(value);controls[key].slider.value=value;$('error').textContent='';render();schedule(130);}
+function schedule(ms){clearTimeout(timer);timer=setTimeout(pump,ms);}
+function render(){
+ const locked=!connected||!state||state.locked||state.automatic?.active||!state.trialsAvailable||!!action;
+ for(const [key,c] of Object.entries(controls)){
+   const value=pending.get(key)?.value??state?.values[key];
+   if(value!==undefined){if(document.activeElement!==c.number)c.number.value=fmt(value);if(document.activeElement!==c.slider)c.slider.value=value;}
+   c.number.disabled=c.slider.disabled=locked;
+   c.buttons[0].disabled=locked||value<=specs[key].min;c.buttons[1].disabled=locked||value>=specs[key].max;
+   c.requested.textContent=fmt(state?.values[key]);c.applied.textContent=fmt(state?.appliedValues?.[key]);
+ }
+ $('connection').textContent=connected?'Headset connected':'Disconnected';$('connection').className='badge '+(connected?'good':'warn');
+ const current=state&&state.mode===4&&state.appliedMode===4&&state.revision===state.appliedRevision&&state.frameAgeSeconds!==null&&state.frameAgeSeconds<2&&!state.stopped&&Object.keys(specs).every(k=>Math.abs(state.values[k]-state.appliedValues?.[k])<.001);
+ $('sync').textContent=!connected?'Reconnect USB to continue':pending.size?'Sending edits…':current?'Current values reached the pipeline':'Waiting for a frame with these values…';$('sync').className=current&&!pending.size?'':'pending';
+ $('save').disabled=!connected||!state?.trialsAvailable||state?.profileBusy||state?.automatic?.active||!!action;
+ $('auto-start').disabled=$('auto-check').disabled=locked||!state?.automatic;
+ $('auto-cancel').disabled=!connected||!state?.automatic?.active||!!action;
+ $('auto-status').textContent=state?.automatic?`${state.automatic.active?'Running':'Status'}: ${state.automatic.phase} · trial ${state.automatic.trial}/${state.automatic.total} · ${state.automatic.saved} exports · ${state.automatic.message}`:'Install the automatic-capture update to use this sequence.';
+ $('load').disabled=locked||!state?.savedProfileAvailable;$('reset').disabled=locked;
+ if(state){$('mode').textContent=state.modeLabel;$('runtime').textContent=state.message;$('profile').textContent=state.profileMessage;$('frame').textContent=`Frame ${state.frame} · ${state.hasFace?'Face detected':'No measured face'} · ${state.frameAgeSeconds===null?'No frame yet':state.frameAgeSeconds.toFixed(1)+' s since readback'} · revision ${state.revision} / applied ${state.appliedRevision}`;}
+}
+async function request(command){const response=await fetch('/api/command',{method:'POST',headers:{'Content-Type':'application/json','X-Calibrate-Token':token},body:JSON.stringify(command),signal:AbortSignal.timeout(15000)});const data=await response.json();if(!response.ok)throw Error(data.error||'Bridge error');state=data.state;connected=true;$('serial').textContent=data.serial;return data.state;}
+async function pump(){
+ if(busy)return;busy=true;
+ const entry=pending.entries().next().value;const nextAction=!entry?action:null;
+ try{
+   const response=await request(entry?{command:'set',parameter:entry[0],value:entry[1].value}:nextAction?{command:nextAction}:{command:'status'});
+   if(entry&&pending.get(entry[0])?.version===entry[1].version)pending.delete(entry[0]);
+   if(nextAction)action=null;
+   if(!response.accepted){pending.clear();action=null;$('error').textContent=response.error||'The headset rejected the change.';}
+   else if(!entry&&!nextAction&&connected)$('error').textContent='';
+ }catch(error){connected=false;pending.clear();action=null;$('error').textContent=error.message+' Edits are not replayed after reconnection.';}
+ finally{busy=false;render();if(pending.size||action)schedule(0);}
+}
+
+for(const button of document.querySelectorAll('[data-command]'))button.onclick=()=>{action=button.dataset.command;render();schedule(0);};
+render();pump();setInterval(()=>{if(!busy&&!pending.size&&!action)pump();},1000);
+</script>
+</body>
+</html>

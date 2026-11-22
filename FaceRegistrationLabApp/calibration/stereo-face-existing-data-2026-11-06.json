@@ -1,0 +1,547 @@
+{
+  "schema": 1,
+  "profileType": "offline-stereo-face-recommendation",
+  "status": "FINAL_RECOMMENDATION_FROM_EXISTING_DATA_NOT_DEPLOYED",
+  "acceptedDeviceCalibration": false,
+  "deviceSerial": "PB311XHGKC220141G",
+  "fingerprint": "Pico/swan/swan:16/BQ2A.260122.002-BP2A.250705.008/20261014024400:userdebug/test-keys",
+  "sourceImageSize": [
+    3248,
+    2464
+  ],
+  "sourceIntrinsicsNativePixels": [
+    [
+      2358.8703510680853,
+      0.0,
+      1561.261136055872
+    ],
+    [
+      0.0,
+      1815.389847770632,
+      1222.1797049912946
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "sourceDistortion": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "sourceCameraProfile": "artifacts/facelandmarker/registration-lab/board-supplement-2026-11-06-f5e56b/analysis/diagnostic-camera-profile.json",
+  "sourceCameraSha256": "671b89db6373f580f925b0a5b9a4324a501d200750bb32e790315bfeb567d371",
+  "workingCameraRule": "K_work = A_image @ K_source_native; current preserved affine supported, apply it exactly once",
+  "currentPreservedAffine": [
+    0.7673501372337341,
+    0,
+    377.70703125,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+  ],
+  "currentAffineWorkingIntrinsics": [
+    [
+      1810.0794876086818,
+      0.0,
+      1575.740978260169
+    ],
+    [
+      0.0,
+      1815.389847770632,
+      1222.1797049912946
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "DHead": [
+    [
+      0.9997588246273411,
+      -0.0011340528732299644,
+      0.02193186047371193,
+      -0.004310512859900328
+    ],
+    [
+      0.0012597332461165298,
+      0.9999828613348418,
+      -0.005717526452179058,
+      -0.04409491847453374
+    ],
+    [
+      -0.021925000613598113,
+      0.00574377581939419,
+      0.999743118699714,
+      0.04219700998229438
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "translationMm": [
+    -4.310512859900328,
+    -44.09491847453374,
+    42.197009982294375
+  ],
+  "rotationVectorDegrees": [
+    0.3283703202363594,
+    1.2565144150783067,
+    0.06858280987290134
+  ],
+  "cameraRayScale": 1.0,
+  "existingCameraToHead": [
+    [
+      0.9999971985816956,
+      0.0004685506282839924,
+      0.002308035269379616,
+      -0.026490256190299988
+    ],
+    [
+      -0.00045299704652279615,
+      0.9999772310256958,
+      -0.006734795868396759,
+      0.04333693906664848
+    ],
+    [
+      -0.002311138203367591,
+      0.006733731832355261,
+      0.9999746680259705,
+      -0.047931235283613205
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "effectiveCameraToHead": [
+    [
+      0.9997058500466601,
+      -0.0005179061595830197,
+      0.024246421139110578,
+      -0.03189474779763018
+    ],
+    [
+      0.0008199544281310531,
+      0.999922182709698,
+      -0.012449154550170873,
+      -0.0005180446959742932
+    ],
+    [
+      -0.024238085621162916,
+      0.01246537412926391,
+      0.99962850640064,
+      -0.004892196117350589
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "coordinateConvention": "Column vectors; row-major JSON matrices; metres; camera/head X right, Y up, forward -Z. Rotation vector is axis-angle, not Euler.",
+  "stageVertexEquation": "Q_stage = H_capture @ D_head @ E_cameraToHead @ (0.01 * Q_camera_cm)",
+  "stageFacePoseEquation": "T_stage_face = H_capture @ D_head @ E_cameraToHead @ T_camera_face_metres; convert translation cm to m and preserve similarity scale",
+  "servicePacketEquation": "M_service_to_stage = H_capture @ D_head @ E_cameraToHead @ inverse(T_camera_to_service)",
+  "applicationNotes": [
+    "Reconstruct with K_work before this transform; applying D to old C geometry is not this profile.",
+    "D replaces the experimental DOWN40 correction. Do not stack them.",
+    "Use D with existing E, OR effectiveCameraToHead alone, never both.",
+    "Apply identical matrix to all mesh vertices and pose. Do not apply face pose again to camera-space vertices.",
+    "This is an effective registration to recorded stereo passthrough, not a claim about physical factory E.",
+    "Do not load this JSON directly into the old custom-virtual-camera schema. The app needs explicit K and D integration."
+  ],
+  "fitting": "All nine uniquely posed measured board exposures at close/middle/far; 10 visible close corners and all48 middle/far, equal distance/exposure/point weighting. No face anatomy used to determine final coefficients.",
+  "validation": {
+    "parameters": [
+      -0.004310512859900328,
+      -0.04409491847453374,
+      0.04219700998229438,
+      0.005731143253952637,
+      0.02193031364188714,
+      0.0011969958425514025
+    ],
+    "DHead": [
+      [
+        0.9997588246273411,
+        -0.0011340528732299644,
+        0.02193186047371193,
+        -0.004310512859900328
+      ],
+      [
+        0.0012597332461165298,
+        0.9999828613348418,
+        -0.005717526452179058,
+        -0.04409491847453374
+      ],
+      [
+        -0.021925000613598113,
+        0.00574377581939419,
+        0.999743118699714,
+        0.04219700998229438
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "rayScale": 1,
+    "diagnostics": {
+      "bounded": false,
+      "condition": 22.604602165152553
+    },
+    "allScores": {
+      "board:close": {
+        "rmsPixels": 3.913597165294351,
+        "eyeRmsPixels": [
+          3.8307309922400523,
+          3.9947447489785257
+        ]
+      },
+      "board:far": {
+        "rmsPixels": 1.4589824948496144,
+        "eyeRmsPixels": [
+          1.4678131524368614,
+          1.4500980622318524
+        ]
+      },
+      "board:middle": {
+        "rmsPixels": 0.9400934022801023,
+        "eyeRmsPixels": [
+          1.0488048824456941,
+          0.8170431620050623
+        ]
+      },
+      "check:0": {
+        "rmsPixels": 3.841244962271206,
+        "eyeRmsPixels": [
+          3.6523045903976,
+          4.0213178063053485
+        ]
+      },
+      "roll:0": {
+        "rmsPixels": 8.806637871999685,
+        "eyeRmsPixels": [
+          8.8588554278743,
+          8.754108848140987
+        ]
+      },
+      "roll:1": {
+        "rmsPixels": 7.404301798699901,
+        "eyeRmsPixels": [
+          7.179200469806408,
+          7.622758743840227
+        ]
+      },
+      "roll:2": {
+        "rmsPixels": 3.4600271761574533,
+        "eyeRmsPixels": [
+          3.7028857564306663,
+          3.198783080222717
+        ]
+      },
+      "roll:3": {
+        "rmsPixels": 6.943909112147318,
+        "eyeRmsPixels": [
+          6.813498548163424,
+          7.071915232078225
+        ]
+      },
+      "trial:0": {
+        "rmsPixels": 9.805522158833504,
+        "eyeRmsPixels": [
+          5.83961077479874,
+          12.577578288907775
+        ]
+      },
+      "trial:1": {
+        "rmsPixels": 6.664029879821117,
+        "eyeRmsPixels": [
+          2.721028472258906,
+          9.02300352052761
+        ]
+      },
+      "trial:2": {
+        "rmsPixels": 5.344672528884799,
+        "eyeRmsPixels": [
+          3.848314266026822,
+          6.505499688104374
+        ]
+      },
+      "trial:3": {
+        "rmsPixels": 6.8110455934317535,
+        "eyeRmsPixels": [
+          4.507946938033816,
+          8.51229102859411
+        ]
+      },
+      "trial:4": {
+        "rmsPixels": 10.58072530097854,
+        "eyeRmsPixels": [
+          7.824321452858401,
+          12.754743807379064
+        ]
+      },
+      "trial:5": {
+        "rmsPixels": 10.842321594479591,
+        "eyeRmsPixels": [
+          3.4047012107824344,
+          14.950581419514544
+        ]
+      },
+      "trial:6": {
+        "rmsPixels": 12.995589940203272,
+        "eyeRmsPixels": [
+          6.9297793526132905,
+          17.02201145317202
+        ]
+      },
+      "trial:7": {
+        "rmsPixels": 14.797895619396803,
+        "eyeRmsPixels": [
+          7.637235714350031,
+          19.48404629866657
+        ]
+      },
+      "trial:8": {
+        "rmsPixels": 10.149241425611756,
+        "eyeRmsPixels": [
+          6.994740498715852,
+          12.533467532424211
+        ]
+      },
+      "trial:9": {
+        "rmsPixels": 7.073027313685374,
+        "eyeRmsPixels": [
+          3.193028233480356,
+          9.479451537957036
+        ]
+      }
+    },
+    "cv": {
+      "board:close": {
+        "parameters": [
+          -0.004621564141080855,
+          -0.04344389153635779,
+          0.043695429724709474,
+          0.005262169463052824,
+          0.021638941065623658,
+          0.00202790775083103
+        ],
+        "diagnostics": {
+          "bounded": false,
+          "condition": 38.99062349293721
+        },
+        "score": {
+          "board:close": {
+            "rmsPixels": 4.098938920806557,
+            "eyeRmsPixels": [
+              3.345690429829345,
+              4.733809892755937
+            ]
+          }
+        }
+      },
+      "board:far": {
+        "parameters": [
+          -0.004317727860947275,
+          -0.04428992116633056,
+          0.0420294793864768,
+          0.006025632308639584,
+          0.02195936705438725,
+          0.0008957524596339351
+        ],
+        "diagnostics": {
+          "bounded": false,
+          "condition": 23.20695739794334
+        },
+        "score": {
+          "board:far": {
+            "rmsPixels": 1.5059620266654938,
+            "eyeRmsPixels": [
+              1.4811500235456485,
+              1.5303718042579089
+            ]
+          }
+        }
+      },
+      "board:middle": {
+        "parameters": [
+          -0.004318102597269904,
+          -0.044046603976577614,
+          0.0421600981031014,
+          0.005554939508416878,
+          0.02195863438839687,
+          0.0001826750939005179
+        ],
+        "diagnostics": {
+          "bounded": false,
+          "condition": 22.437934353528203
+        },
+        "score": {
+          "board:middle": {
+            "rmsPixels": 1.0107407036459084,
+            "eyeRmsPixels": [
+              1.1850484801425938,
+              0.7992832037050327
+            ]
+          }
+        }
+      }
+    },
+    "transfers": {
+      "trial": {
+        "parameters": [
+          -0.004310512859900328,
+          -0.04409491847453374,
+          0.04219700998229438,
+          0.005731143253952637,
+          0.02193031364188714,
+          0.0011969958425514025
+        ],
+        "diagnostics": {
+          "bounded": false,
+          "condition": 22.604602165152553
+        },
+        "score": {
+          "trial:0": {
+            "rmsPixels": 9.805522158833504,
+            "eyeRmsPixels": [
+              5.83961077479874,
+              12.577578288907775
+            ]
+          },
+          "trial:1": {
+            "rmsPixels": 6.664029879821117,
+            "eyeRmsPixels": [
+              2.721028472258906,
+              9.02300352052761
+            ]
+          },
+          "trial:2": {
+            "rmsPixels": 5.344672528884799,
+            "eyeRmsPixels": [
+              3.848314266026822,
+              6.505499688104374
+            ]
+          },
+          "trial:3": {
+            "rmsPixels": 6.8110455934317535,
+            "eyeRmsPixels": [
+              4.507946938033816,
+              8.51229102859411
+            ]
+          },
+          "trial:4": {
+            "rmsPixels": 10.58072530097854,
+            "eyeRmsPixels": [
+              7.824321452858401,
+              12.754743807379064
+            ]
+          },
+          "trial:5": {
+            "rmsPixels": 10.842321594479591,
+            "eyeRmsPixels": [
+              3.4047012107824344,
+              14.950581419514544
+            ]
+          },
+          "trial:6": {
+            "rmsPixels": 12.995589940203272,
+            "eyeRmsPixels": [
+              6.9297793526132905,
+              17.02201145317202
+            ]
+          },
+          "trial:7": {
+            "rmsPixels": 14.797895619396803,
+            "eyeRmsPixels": [
+              7.637235714350031,
+              19.48404629866657
+            ]
+          },
+          "trial:8": {
+            "rmsPixels": 10.149241425611756,
+            "eyeRmsPixels": [
+              6.994740498715852,
+              12.533467532424211
+            ]
+          },
+          "trial:9": {
+            "rmsPixels": 7.073027313685374,
+            "eyeRmsPixels": [
+              3.193028233480356,
+              9.479451537957036
+            ]
+          }
+        }
+      },
+      "roll": {
+        "parameters": [
+          -0.004310512859900328,
+          -0.04409491847453374,
+          0.04219700998229438,
+          0.005731143253952637,
+          0.02193031364188714,
+          0.0011969958425514025
+        ],
+        "diagnostics": {
+          "bounded": false,
+          "condition": 22.604602165152553
+        },
+        "score": {
+          "roll:0": {
+            "rmsPixels": 8.806637871999685,
+            "eyeRmsPixels": [
+              8.8588554278743,
+              8.754108848140987
+            ]
+          },
+          "roll:1": {
+            "rmsPixels": 7.404301798699901,
+            "eyeRmsPixels": [
+              7.179200469806408,
+              7.622758743840227
+            ]
+          },
+          "roll:2": {
+            "rmsPixels": 3.4600271761574533,
+            "eyeRmsPixels": [
+              3.7028857564306663,
+              3.198783080222717
+            ]
+          },
+          "roll:3": {
+            "rmsPixels": 6.943909112147318,
+            "eyeRmsPixels": [
+              6.813498548163424,
+              7.071915232078225
+            ]
+          }
+        }
+      }
+    }
+  },
+  "selection": "Lowest stable board-distance held-group error; independent face roll/turn/distance replay. Rejected free face-scale and face-driven rigid refinements because cross-recording scale changes and board extrapolation worsens.",
+  "scopeLimitations": [
+    "Recordings show different face subjects; subject identities are not annotated. One ROM/device is covered; no promise of universal metric face depth.",
+    "Stereo face landmarks are model estimates, not manual physical ground truth.",
+    "In-headset appearance of this final profile has not been tested. No further capture is required to conclude this analysis."
+  ]
+}

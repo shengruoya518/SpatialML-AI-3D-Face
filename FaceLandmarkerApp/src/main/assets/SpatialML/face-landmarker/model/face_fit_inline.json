@@ -1,0 +1,116 @@
+{
+  "name": "face_fit_inline",
+  "sha256": "4ecbecbfde8854cf0ecb3ad4a5fda5346e6bcae501f25f9b32261a1721049096",
+  "bytes": 210280,
+  "operators": 1492,
+  "operatorKinds": [
+    "ABS",
+    "ADD",
+    "BATCH_MATMUL",
+    "CONCATENATION",
+    "DIV",
+    "GATHER",
+    "GREATER",
+    "LESS",
+    "LESS_EQUAL",
+    "LOGICAL_AND",
+    "MAXIMUM",
+    "MUL",
+    "RESHAPE",
+    "RSQRT",
+    "SELECT_V2",
+    "SLICE",
+    "SQRT",
+    "SUB",
+    "SUM"
+  ],
+  "backend": "CPU",
+  "jacobiSweeps": 5,
+  "canonicalAssetSha256": "3ea041bf50a088cfe334e0586ae4869a97f7074c19aa70042a057a8c67512dbc",
+  "solver": "Horn quaternion largest eigenvector; paired cyclic Jacobi; SO(3)",
+  "inputs": [
+    {
+      "name": "first_targets",
+      "shape": [
+        1,
+        1,
+        33,
+        3
+      ]
+    },
+    {
+      "name": "projected",
+      "shape": [
+        1,
+        1,
+        33,
+        3
+      ]
+    },
+    {
+      "name": "depth",
+      "shape": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "validity",
+      "shape": [
+        1,
+        1,
+        1,
+        2
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "name": "first_scale",
+      "shape": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "second_scale",
+      "shape": [
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "second_targets",
+      "shape": [
+        1,
+        1,
+        33,
+        3
+      ]
+    },
+    {
+      "name": "metric",
+      "shape": [
+        1,
+        1,
+        33,
+        3
+      ]
+    },
+    {
+      "name": "pose",
+      "shape": [
+        1,
+        1,
+        4,
+        4
+      ]
+    }
+  ]
+}

@@ -1,0 +1,371 @@
+{
+  "activeScenePath": "Sources/Scenes/FaceDepthOcclusion.usda",
+  "scenes": [
+    {
+      "bundlePath": "Sources/Scenes/FaceDepthOcclusion.usda",
+      "container": {
+        "appContainer": "Stage",
+        "bounded": false,
+        "contentHost": null,
+        "coordinateSystem": "right-handed, meters",
+        "editorType": "Stage",
+        "isDefault": false,
+        "showUISample": false,
+        "sizeDp": null,
+        "sizeMeters": null,
+        "source": "editor-viewport-container-settings",
+        "spaceRequirement": "FullSpace",
+        "unit": "DevicePoint",
+        "usageHint": "Use Stage for immersive unbounded 3D content."
+      },
+      "entities": [
+        {
+          "active": true,
+          "bounds": null,
+          "components": [],
+          "entityId": "scene:facedepthocclusion:Root/DepthOccluder",
+          "name": "DepthOccluder",
+          "parentPath": "Root",
+          "path": "Root/DepthOccluder",
+          "resources": {},
+          "transform": {
+            "position": [
+              0,
+              0.25,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1.2000000476837158,
+              1.399999976158142,
+              0.019999999552965164
+            ]
+          },
+          "type": "Entity"
+        },
+        {
+          "active": true,
+          "bounds": null,
+          "components": [],
+          "entityId": "scene:facedepthocclusion:Root/BackgroundMarker",
+          "name": "BackgroundMarker",
+          "parentPath": "Root",
+          "path": "Root/BackgroundMarker",
+          "resources": {},
+          "transform": {
+            "position": [
+              0,
+              0.25,
+              -0.03999999910593033
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              0.800000011920929,
+              1,
+              0.019999999552965164
+            ]
+          },
+          "type": "Entity"
+        },
+        {
+          "active": true,
+          "bounds": null,
+          "components": [],
+          "entityId": "scene:facedepthocclusion:Root/BackgroundMarker/DefaultMaterial",
+          "name": "DefaultMaterial",
+          "parentPath": "Root/BackgroundMarker",
+          "path": "Root/BackgroundMarker/DefaultMaterial",
+          "resources": {},
+          "transform": {
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "type": "Entity"
+        },
+        {
+          "active": true,
+          "bounds": null,
+          "components": [],
+          "entityId": "scene:facedepthocclusion:Root/ForegroundMarker",
+          "name": "ForegroundMarker",
+          "parentPath": "Root",
+          "path": "Root/ForegroundMarker",
+          "resources": {},
+          "transform": {
+            "position": [
+              0.05999999865889549,
+              0.25,
+              0.03999999910593033
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              0.20000000298023224,
+              0.4000000059604645,
+              0.019999999552965164
+            ]
+          },
+          "type": "Entity"
+        },
+        {
+          "active": true,
+          "bounds": null,
+          "components": [],
+          "entityId": "scene:facedepthocclusion:Root/ForegroundMarker/DefaultMaterial",
+          "name": "DefaultMaterial",
+          "parentPath": "Root/ForegroundMarker",
+          "path": "Root/ForegroundMarker/DefaultMaterial",
+          "resources": {},
+          "transform": {
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "type": "Entity"
+        },
+        {
+          "active": true,
+          "bounds": null,
+          "components": [],
+          "entityId": "scene:facedepthocclusion:Root/FaceOcclusionMaterial",
+          "name": "FaceOcclusionMaterial",
+          "parentPath": "Root",
+          "path": "Root/FaceOcclusionMaterial",
+          "resources": {},
+          "transform": {
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "type": "Entity"
+        }
+      ],
+      "entityCount": 6,
+      "guid": "e067e0ca-993d-4ef0-98ff-11f806f817f5",
+      "hierarchy": [
+        {
+          "active": true,
+          "children": [],
+          "entityId": "scene:facedepthocclusion:Root/DepthOccluder",
+          "name": "DepthOccluder",
+          "path": "Root/DepthOccluder",
+          "transform": {
+            "position": [
+              0,
+              0.25,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1.2000000476837158,
+              1.399999976158142,
+              0.019999999552965164
+            ]
+          },
+          "type": "Entity"
+        },
+        {
+          "active": true,
+          "children": [
+            {
+              "active": true,
+              "children": [],
+              "entityId": "scene:facedepthocclusion:Root/BackgroundMarker/DefaultMaterial",
+              "name": "DefaultMaterial",
+              "path": "Root/BackgroundMarker/DefaultMaterial",
+              "transform": {
+                "position": [
+                  0,
+                  0,
+                  0
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "type": "Entity"
+            }
+          ],
+          "entityId": "scene:facedepthocclusion:Root/BackgroundMarker",
+          "name": "BackgroundMarker",
+          "path": "Root/BackgroundMarker",
+          "transform": {
+            "position": [
+              0,
+              0.25,
+              -0.03999999910593033
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              0.800000011920929,
+              1,
+              0.019999999552965164
+            ]
+          },
+          "type": "Entity"
+        },
+        {
+          "active": true,
+          "children": [
+            {
+              "active": true,
+              "children": [],
+              "entityId": "scene:facedepthocclusion:Root/ForegroundMarker/DefaultMaterial",
+              "name": "DefaultMaterial",
+              "path": "Root/ForegroundMarker/DefaultMaterial",
+              "transform": {
+                "position": [
+                  0,
+                  0,
+                  0
+                ],
+                "rotation": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "scale": [
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "type": "Entity"
+            }
+          ],
+          "entityId": "scene:facedepthocclusion:Root/ForegroundMarker",
+          "name": "ForegroundMarker",
+          "path": "Root/ForegroundMarker",
+          "transform": {
+            "position": [
+              0.05999999865889549,
+              0.25,
+              0.03999999910593033
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              0.20000000298023224,
+              0.4000000059604645,
+              0.019999999552965164
+            ]
+          },
+          "type": "Entity"
+        },
+        {
+          "active": true,
+          "children": [],
+          "entityId": "scene:facedepthocclusion:Root/FaceOcclusionMaterial",
+          "name": "FaceOcclusionMaterial",
+          "path": "Root/FaceOcclusionMaterial",
+          "transform": {
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "type": "Entity"
+        }
+      ],
+      "id": "scene:facedepthocclusion",
+      "name": "FaceDepthOcclusion",
+      "rootCount": 4,
+      "sourcePath": "Sources/Scenes/FaceDepthOcclusion.usda",
+      "warnings": []
+    }
+  ],
+  "schemaVersion": "0.1",
+  "scope": "bundle_scenes",
+  "source": "pack_editor_bundle",
+  "sourceTool": "export_bundle_scene_manifest",
+  "warnings": []
+}

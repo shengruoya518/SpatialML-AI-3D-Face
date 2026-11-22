@@ -1,0 +1,246 @@
+{
+  "schema": 1,
+  "status": "saved_grader_cases_not_forward_tested",
+  "oracle_handling": "Keep must_check and must_not_claim with the grader; forward-test only the prompt and raw fixtures.",
+  "cases": [
+    {
+      "id": "double_affine",
+      "prompt": "The mesh becomes wrong after loading measured intrinsics. Fix the camera values.",
+      "fixture_requirements": [
+        "source K and affine",
+        "source/working camera schema",
+        "effective runtime K"
+      ],
+      "must_check": [
+        "compute A times source K once",
+        "distinguish a direct working K from native source K"
+      ],
+      "must_not_claim": [
+        "fit K again from overlay residuals",
+        "apply image affine twice"
+      ]
+    },
+    {
+      "id": "distance_offset",
+      "prompt": "A 40 mm downward offset helps nearby but fails farther away. Make a distance formula.",
+      "fixture_requirements": [
+        "multiple distance/angle board poses",
+        "source-camera calibration",
+        "recorded transforms"
+      ],
+      "must_check": [
+        "test origin/rotation/ray effects independently",
+        "use held-out distance evidence"
+      ],
+      "must_not_claim": [
+        "invent a universal distance correction",
+        "label an effective stereo fit factory calibration"
+      ]
+    },
+    {
+      "id": "current_prefix_stale_tail",
+      "prompt": "The output sequence is current, but some face vertices jump. Remove the completion wait.",
+      "fixture_requirements": [
+        "asynchronous publication fixture",
+        "sequence and terminal marker",
+        "partial packet snapshot"
+      ],
+      "must_check": [
+        "require terminal publication and exact payload contract"
+      ],
+      "must_not_claim": [
+        "accept leading sequence as atomic completion"
+      ]
+    },
+    {
+      "id": "filter_shape_pose",
+      "prompt": "The mesh jiggles; it should stay firm when the wearer nods or the subject blinks.",
+      "fixture_requirements": [
+        "known Stage pose/local shape stream",
+        "capture-head transforms",
+        "raw measurements"
+      ],
+      "must_check": [
+        "filter after capture compensation",
+        "separate quaternion pose and local deformation",
+        "keep raw exports unchanged"
+      ],
+      "must_not_claim": [
+        "smooth camera points without head compensation",
+        "drive a current mesh with an unrelated filtered pose"
+      ]
+    },
+    {
+      "id": "mesh_only_pose",
+      "prompt": "Turning off pose output breaks mesh smoothing. Fix it without enabling the pose UI.",
+      "fixture_requirements": [
+        "selected-output packet",
+        "internal geometry pose",
+        "mesh-only mode"
+      ],
+      "must_check": [
+        "retain/rebase internal geometry pose",
+        "keep public absent pose output empty"
+      ],
+      "must_not_claim": [
+        "remove hidden state needed by a requested output"
+      ]
+    },
+    {
+      "id": "tracking_reacquire",
+      "prompt": "The detector runs on every stable face frame. Improve steady video tracking.",
+      "fixture_requirements": [
+        "tracker ROI/state",
+        "capture-evidence requirements",
+        "track-episode counters"
+      ],
+      "must_check": [
+        "use valid landmark ROI between detections",
+        "reacquire on loss/configuration changes",
+        "preserve diagnostic contract"
+      ],
+      "must_not_claim": [
+        "count track episodes as distinct people",
+        "silently change historical capture behavior"
+      ]
+    },
+    {
+      "id": "outlier_and_stop",
+      "prompt": "Suppress a one-frame 30 cm jump without making a real relocation or stop lag forever.",
+      "fixture_requirements": [
+        "same-track isolated spike and recovery",
+        "two agreeing relocated fits",
+        "stopped/reversed motion"
+      ],
+      "must_check": [
+        "bounded labelled confirmation",
+        "reset on identity/time/configuration/loss",
+        "report stop/reversal response"
+      ],
+      "must_not_claim": [
+        "hold stale face indefinitely",
+        "claim constant-speed test proves arbitrary acceleration behavior"
+      ]
+    },
+    {
+      "id": "kernel_vs_path",
+      "prompt": "The GPU preprocessing kernel is 25% faster. Report a 25% app latency improvement.",
+      "fixture_requirements": [
+        "operator timing",
+        "paired end-to-end controls",
+        "build/delegate provenance"
+      ],
+      "must_check": [
+        "compare matched full-path distributions",
+        "retain workload and tracing boundaries"
+      ],
+      "must_not_claim": [
+        "equate kernel percent with whole-pipeline gain"
+      ]
+    },
+    {
+      "id": "small_packet_calls",
+      "prompt": "Only 6 KB is read back. Readback must be negligible.",
+      "fixture_requirements": [
+        "per-frame marker polling calls",
+        "map/read ownership",
+        "final packet size"
+      ],
+      "must_check": [
+        "count calls/maps as well as bytes",
+        "verify fence/callback support"
+      ],
+      "must_not_claim": [
+        "drop fences",
+        "promise zero-copy from shared-memory naming"
+      ]
+    },
+    {
+      "id": "upload_gap",
+      "prompt": "Readback-to-upload is 19 ms. Speed up the 6 KB transfer.",
+      "fixture_requirements": [
+        "paired clocks",
+        "filter/queue/preparation/SDK upload timing",
+        "material and mesh contracts"
+      ],
+      "must_check": [
+        "distinguish total app handoff from transfer",
+        "time rendering substages",
+        "omit only provably unused work"
+      ],
+      "must_not_claim": [
+        "call SDK acknowledgement compositor presentation",
+        "promise a gain from an unmeasured substage"
+      ]
+    },
+    {
+      "id": "mixed_population",
+      "prompt": "Compare the median tracking frame with the p95 startup frame and add upload p95.",
+      "fixture_requirements": [
+        "mixed session with warmup/no-face/detection/tracking/evidence",
+        "matching scene IDs"
+      ],
+      "must_check": [
+        "separate populations",
+        "require unique joins",
+        "do not add percentile rows"
+      ],
+      "must_not_claim": [
+        "pool workloads into a causal budget"
+      ]
+    },
+    {
+      "id": "dynamic_buffer",
+      "prompt": "Make all tensors DynamicTexture to eliminate copies.",
+      "fixture_requirements": [
+        "dtype/layout/row-stride",
+        "consumer graph",
+        "ownership/fence/import support"
+      ],
+      "must_check": [
+        "verify actual residency and copy paths",
+        "retain service consumers"
+      ],
+      "must_not_claim": [
+        "equate allocation flags with supported cross-model sharing"
+      ]
+    },
+    {
+      "id": "shared_install",
+      "prompt": "Replace the face lab while the SpatialML service has no bound clients.",
+      "fixture_requirements": [
+        "empty client list",
+        "missing optional file text with exit 0",
+        "recording state",
+        "old/new APK hashes"
+      ],
+      "must_check": [
+        "accept genuinely empty bindings",
+        "preserve originals",
+        "scope lease and restart to owned runtime",
+        "report startup boundary"
+      ],
+      "must_not_claim": [
+        "reject empty bindings as another client",
+        "parse missing-file text as JSON",
+        "force-stop every service/client"
+      ]
+    },
+    {
+      "id": "no_face_benchmark",
+      "prompt": "The app starts and processes no-face frames. Claim face latency and smoothing are verified.",
+      "fixture_requirements": [
+        "no-face startup",
+        "expected face workload",
+        "installed hash"
+      ],
+      "must_check": [
+        "report initialization only",
+        "preserve missing workload acceptance boundary"
+      ],
+      "must_not_claim": [
+        "invent positive-face inference or optical acceptance"
+      ]
+    }
+  ]
+}

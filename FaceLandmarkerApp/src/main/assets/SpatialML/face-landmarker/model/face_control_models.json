@@ -1,0 +1,1099 @@
+[
+  {
+    "name": "face_detector_control",
+    "sha256": "e4f3782b1a12c6715ffb70d7438ec23c5cb5bbb1db47cfffafb8ea984dc613ed",
+    "bytes": 100640,
+    "operators": 477,
+    "operatorKinds": [
+      "ABS",
+      "ADD",
+      "ATAN2",
+      "BATCH_MATMUL",
+      "CAST",
+      "CONCATENATION",
+      "COS",
+      "DIV",
+      "EQUAL",
+      "GATHER",
+      "GREATER",
+      "GREATER_EQUAL",
+      "LESS",
+      "LESS_EQUAL",
+      "LOGICAL_AND",
+      "LOGICAL_NOT",
+      "LOGICAL_OR",
+      "LOGISTIC",
+      "MAXIMUM",
+      "MINIMUM",
+      "MUL",
+      "NOT_EQUAL",
+      "REDUCE_MAX",
+      "REDUCE_MIN",
+      "RESHAPE",
+      "SELECT_V2",
+      "SIN",
+      "SLICE",
+      "SQRT",
+      "SUB",
+      "SUM"
+    ],
+    "backend": "CPU",
+    "inputs": [
+      {
+        "name": "boxes_fine",
+        "shape": [
+          1,
+          1,
+          512,
+          16
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "boxes_coarse",
+        "shape": [
+          1,
+          1,
+          384,
+          16
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "scores_fine",
+        "shape": [
+          1,
+          1,
+          512,
+          1
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "scores_coarse",
+        "shape": [
+          1,
+          1,
+          384,
+          1
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "settings",
+        "shape": [
+          1,
+          1,
+          1,
+          11
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "timestamp",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ],
+        "dtype": "INT32"
+      },
+      {
+        "name": "command",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "track_state",
+        "shape": [
+          1,
+          1,
+          1,
+          24
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "service_intrinsics",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "image_transform",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "trial_intrinsics",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "lab_mode",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "left_camera_to_xr",
+        "shape": [
+          1,
+          1,
+          4,
+          4
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "detector_to_source",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ],
+        "dtype": "FLOAT32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "intrinsics",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "roi",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "affine",
+        "shape": [
+          1,
+          1,
+          2,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "sample_affine",
+        "shape": [
+          1,
+          1,
+          2,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "frame",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "next_track_state",
+        "shape": [
+          1,
+          1,
+          1,
+          24
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "detector_info",
+        "shape": [
+          1,
+          1,
+          1,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "producer_snapshot",
+        "shape": [
+          1,
+          1,
+          1,
+          66
+        ],
+        "dtype": "FLOAT32"
+      }
+    ]
+  },
+  {
+    "name": "face_roi_control",
+    "sha256": "2edbad6e2edb4382f18fae8e037c1ec917b265eeb6f4003eb41e31d2d902251a",
+    "bytes": 38852,
+    "operators": 224,
+    "operatorKinds": [
+      "ABS",
+      "ADD",
+      "BATCH_MATMUL",
+      "CAST",
+      "CONCATENATION",
+      "COS",
+      "DIV",
+      "EQUAL",
+      "GREATER",
+      "GREATER_EQUAL",
+      "LESS",
+      "LESS_EQUAL",
+      "LOGICAL_AND",
+      "LOGICAL_NOT",
+      "LOGICAL_OR",
+      "MAXIMUM",
+      "MINIMUM",
+      "MUL",
+      "NOT_EQUAL",
+      "REDUCE_MIN",
+      "RESHAPE",
+      "SELECT_V2",
+      "SIN",
+      "SLICE",
+      "SUB"
+    ],
+    "backend": "CPU",
+    "inputs": [
+      {
+        "name": "settings",
+        "shape": [
+          1,
+          1,
+          1,
+          11
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "timestamp",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ],
+        "dtype": "INT32"
+      },
+      {
+        "name": "command",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "track_state",
+        "shape": [
+          1,
+          1,
+          1,
+          24
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "service_intrinsics",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "image_transform",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "trial_intrinsics",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "lab_mode",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "left_camera_to_xr",
+        "shape": [
+          1,
+          1,
+          4,
+          4
+        ],
+        "dtype": "FLOAT32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "intrinsics",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "roi",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "affine",
+        "shape": [
+          1,
+          1,
+          2,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "sample_affine",
+        "shape": [
+          1,
+          1,
+          2,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "frame",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "next_track_state",
+        "shape": [
+          1,
+          1,
+          1,
+          24
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "producer_snapshot",
+        "shape": [
+          1,
+          1,
+          1,
+          66
+        ],
+        "dtype": "FLOAT32"
+      }
+    ]
+  },
+  {
+    "name": "face_landmark_control",
+    "sha256": "1a9d1e8b940ed8d8cf5a962d59a08bd4685a2c11f301938bc3ea914e479eba4b",
+    "bytes": 383436,
+    "operators": 2522,
+    "operatorKinds": [
+      "ABS",
+      "ADD",
+      "ATAN2",
+      "BATCH_MATMUL",
+      "CAST",
+      "CONCATENATION",
+      "COS",
+      "DIV",
+      "EQUAL",
+      "EXP",
+      "GATHER",
+      "GREATER",
+      "GREATER_EQUAL",
+      "LESS",
+      "LESS_EQUAL",
+      "LOG",
+      "LOGICAL_AND",
+      "LOGICAL_NOT",
+      "LOGICAL_OR",
+      "LOGISTIC",
+      "MAXIMUM",
+      "MINIMUM",
+      "MUL",
+      "NOT_EQUAL",
+      "REDUCE_MAX",
+      "REDUCE_MIN",
+      "RESHAPE",
+      "RSQRT",
+      "SELECT_V2",
+      "SIN",
+      "SLICE",
+      "SQRT",
+      "SUB",
+      "SUM"
+    ],
+    "backend": "CPU",
+    "inputs": [
+      {
+        "name": "raw_landmarks",
+        "shape": [
+          1,
+          1,
+          1,
+          1434
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "presence_logit",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "roi",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "affine",
+        "shape": [
+          1,
+          1,
+          2,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "settings",
+        "shape": [
+          1,
+          1,
+          1,
+          11
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "frame",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "intrinsics",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "track_state",
+        "shape": [
+          1,
+          1,
+          1,
+          24
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "left_camera_to_xr",
+        "shape": [
+          1,
+          1,
+          4,
+          4
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "command",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "pose_state",
+        "shape": [
+          1,
+          1,
+          1,
+          24
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "producer_snapshot",
+        "shape": [
+          1,
+          1,
+          1,
+          66
+        ],
+        "dtype": "FLOAT32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "next_track_state",
+        "shape": [
+          1,
+          1,
+          1,
+          24
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "validity",
+        "shape": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "depth_offset",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "first_scale",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "second_scale",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "pose",
+        "shape": [
+          1,
+          1,
+          4,
+          4
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "next_pose_state",
+        "shape": [
+          1,
+          1,
+          1,
+          24
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "world_pose",
+        "shape": [
+          1,
+          1,
+          4,
+          4
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "raw_world_pose",
+        "shape": [
+          1,
+          1,
+          4,
+          4
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "pose_status",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "diagnostics",
+        "shape": [
+          1,
+          1,
+          1,
+          32
+        ],
+        "dtype": "FLOAT32"
+      }
+    ]
+  },
+  {
+    "name": "face_landmark_control_lab",
+    "sha256": "b82af741be1cd486d3deca1d9b6448627ffddd16b511a110bbf1bbec0f3e637c",
+    "bytes": 385672,
+    "operators": 2533,
+    "operatorKinds": [
+      "ABS",
+      "ADD",
+      "ATAN2",
+      "BATCH_MATMUL",
+      "CAST",
+      "CONCATENATION",
+      "COS",
+      "DIV",
+      "EQUAL",
+      "EXP",
+      "GATHER",
+      "GREATER",
+      "GREATER_EQUAL",
+      "LESS",
+      "LESS_EQUAL",
+      "LOG",
+      "LOGICAL_AND",
+      "LOGICAL_NOT",
+      "LOGICAL_OR",
+      "LOGISTIC",
+      "MAXIMUM",
+      "MINIMUM",
+      "MUL",
+      "NOT_EQUAL",
+      "REDUCE_MAX",
+      "REDUCE_MIN",
+      "RESHAPE",
+      "RSQRT",
+      "SELECT_V2",
+      "SIN",
+      "SLICE",
+      "SQRT",
+      "SUB",
+      "SUM"
+    ],
+    "backend": "CPU",
+    "inputs": [
+      {
+        "name": "raw_landmarks",
+        "shape": [
+          1,
+          1,
+          1,
+          1434
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "presence_logit",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "roi",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "affine",
+        "shape": [
+          1,
+          1,
+          2,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "settings",
+        "shape": [
+          1,
+          1,
+          1,
+          11
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "frame",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "intrinsics",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "track_state",
+        "shape": [
+          1,
+          1,
+          1,
+          24
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "left_camera_to_xr",
+        "shape": [
+          1,
+          1,
+          4,
+          4
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "command",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "pose_state",
+        "shape": [
+          1,
+          1,
+          1,
+          24
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "producer_snapshot",
+        "shape": [
+          1,
+          1,
+          1,
+          66
+        ],
+        "dtype": "FLOAT32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "next_track_state",
+        "shape": [
+          1,
+          1,
+          1,
+          24
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "validity",
+        "shape": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "depth_offset",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "first_scale",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "second_scale",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "pose",
+        "shape": [
+          1,
+          1,
+          4,
+          4
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "next_pose_state",
+        "shape": [
+          1,
+          1,
+          1,
+          24
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "world_pose",
+        "shape": [
+          1,
+          1,
+          4,
+          4
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "raw_world_pose",
+        "shape": [
+          1,
+          1,
+          4,
+          4
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "pose_status",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "diagnostics",
+        "shape": [
+          1,
+          1,
+          1,
+          32
+        ],
+        "dtype": "FLOAT32"
+      },
+      {
+        "name": "fit_snapshot",
+        "shape": [
+          1,
+          1,
+          1,
+          1995
+        ],
+        "dtype": "FLOAT32"
+      }
+    ]
+  },
+  {
+    "name": "detector_compact_preprocess_gpu",
+    "sha256": "356780b9290fb8a1b4836a564e96028ede08085d8feffec84f5517db1f90dd88",
+    "bytes": 1360,
+    "operators": 4,
+    "operatorKinds": [
+      "CAST",
+      "DIV",
+      "RESIZE_NEAREST_NEIGHBOR",
+      "SLICE"
+    ],
+    "backend": "GPU",
+    "inputs": [
+      {
+        "name": "image",
+        "shape": [
+          1,
+          336,
+          336,
+          3
+        ],
+        "dtype": "UINT8"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "model_input",
+        "shape": [
+          1,
+          256,
+          256,
+          3
+        ],
+        "dtype": "FLOAT32"
+      }
+    ]
+  },
+  {
+    "name": "face_completion_marker",
+    "sha256": "3cc92c8958073dc9621ceff923b4ccb322b1ba704a642f361dd9d7c77e5d8ceb",
+    "bytes": 676,
+    "operators": 1,
+    "operatorKinds": [
+      "GATHER"
+    ],
+    "backend": "CPU",
+    "inputs": [
+      {
+        "name": "command",
+        "shape": [
+          1,
+          1,
+          1,
+          4
+        ],
+        "dtype": "FLOAT32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "sequence",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dtype": "FLOAT32"
+      }
+    ]
+  }
+]

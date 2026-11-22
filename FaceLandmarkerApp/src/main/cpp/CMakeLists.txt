@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.22.1)
+project(face_camera_calibration LANGUAGES CXX)
+add_library(face_camera_calibration SHARED CameraCalibration.cpp)
+target_compile_features(face_camera_calibration PRIVATE cxx_std_17)
+target_link_libraries(face_camera_calibration PRIVATE dl)

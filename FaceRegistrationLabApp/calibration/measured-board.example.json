@@ -1,0 +1,7 @@
+{
+  "boardId": "replace-with-your-physical-board-id",
+  "innerCorners": [8, 6],
+  "fiveSquareHorizontalMm": null,
+  "fiveSquareVerticalMm": null,
+  "orientationLabel": "describe the label outside the physical top-left corner"
+}

@@ -1,0 +1,48 @@
+{
+  "name": "tongue_visibility",
+  "bytes": 21224,
+  "sha256": "7031c138a93238193bd132bd973c6be66d3f8fd9bbf9942e3d4277f75a728091",
+  "backend": "CPU",
+  "learned": false,
+  "operators": 122,
+  "inputs": [
+    {
+      "name": "mouth_image",
+      "shape": [
+        1,
+        256,
+        256,
+        3
+      ]
+    },
+    {
+      "name": "raw_landmarks",
+      "shape": [
+        1,
+        1,
+        1,
+        1434
+      ]
+    },
+    {
+      "name": "validity",
+      "shape": [
+        1,
+        1,
+        1,
+        2
+      ]
+    },
+    {
+      "name": "command",
+      "shape": [
+        1,
+        1,
+        1,
+        4
+      ]
+    }
+  ],
+  "output": "sequence, tongue appearance confidence",
+  "limitation": "Color/geometry heuristic needs real tongue/no-tongue validation under device lighting"
+}

@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "status": "local_handoff_for_maintained_skill_and_tool_source",
+  "checkpoint": "bb11e716a2d768ca03da74de6273c9e9a5c380b2",
+  "tools": [
+    {
+      "id": "runtime_timeline_report",
+      "status": "local_reference_implemented_and_exercised",
+      "entrypoint": "../tools/summarize_runtime_timeline.py",
+      "inputs": [
+        "single-session timeline JSONL",
+        "warmup frame threshold"
+      ],
+      "outputs": [
+        "journal hash",
+        "separate workload/output/evidence distributions",
+        "unique matched upload/capture distributions",
+        "cadence",
+        "exclusions and ambiguity warnings"
+      ],
+      "acceptance": [
+        "reject truncated/nonfinite rows",
+        "exclude duplicate packet IDs",
+        "do not fabricate upload for pose-only/hidden/no-face output",
+        "reject mismatched capture/correction join",
+        "never add unrelated quantiles"
+      ],
+      "cli_followup": [
+        "add SDK-specific journal adapters",
+        "group camera/configuration/backend/preset explicitly",
+        "include measured filter/queue/preparation/native-upload substages"
+      ]
+    },
+    {
+      "id": "geometry_frame_contract_verify",
+      "status": "proposal_with_project_reference_tests",
+      "references": [
+        "../tools/validate_intrinsics.py",
+        "../calibration/stereo-face-existing-data-2026-11-06.json"
+      ],
+      "inputs": [
+        "source K",
+        "source-to-working affine",
+        "camera/head/registration matrices",
+        "units",
+        "configuration revision",
+        "raw and rendered vertices/pose"
+      ],
+      "acceptance": [
+        "A times source K once",
+        "mesh and pose share transform",
+        "rigid inverse restores raw references",
+        "hold source-camera calibration independent of tested stereo residuals",
+        "different source/working-camera schemas remain distinct"
+      ]
+    },
+    {
+      "id": "temporal_pose_mesh_verify",
+      "status": "proposal_with_production_reference_validator",
+      "entrypoint": "../tools/validate_pose_mesh_stabilization.py",
+      "inputs": [
+        "canonical local shape",
+        "known motion/noise",
+        "capture timestamps",
+        "tracking IDs",
+        "configuration transitions"
+      ],
+      "outputs": [
+        "static RMS ratio",
+        "motion-equivalent filter delay",
+        "stop/reversal error",
+        "local-shape rigidity error",
+        "reset/outlier counts"
+      ],
+      "acceptance": [
+        "test multiple frame rates",
+        "test signed quaternion derivatives and large-rotation branches",
+        "preserve capture-head/Stage-axis invariance",
+        "do not mutate raw inputs/exports",
+        "keep camera-ray scale separate from inference similarity scale",
+        "label prediction/held state and bound its lifetime"
+      ]
+    },
+    {
+      "id": "install_preserve_receipt",
+      "status": "proposal_from_verified_local_install_workflow",
+      "inputs": [
+        "serial",
+        "package",
+        "APK hash",
+        "ROM fingerprint",
+        "bound service clients",
+        "capture/recording state"
+      ],
+      "outputs": [
+        "installed hash",
+        "previous APK backup",
+        "preservation methods and counts",
+        "startup/face/filter verification boundaries",
+        "lease release"
+      ],
+      "acceptance": [
+        "allow empty service client list",
+        "parse zero-exit missing-file error text",
+        "do not stop another active client",
+        "preserve app settings and recordings",
+        "never substitute no-face startup for face-workload acceptance",
+        "reuse explicit user authorization rather than asking repeatedly"
+      ]
+    },
+    {
+      "id": "boundary_copy_call_audit",
+      "status": "proposal",
+      "inputs": [
+        "model tensor/encoding contracts",
+        "producer and consumer graph",
+        "app readback/render contract",
+        "actual build flags",
+        "copy/map/delegate evidence"
+      ],
+      "outputs": [
+        "bytes per boundary",
+        "calls/maps per frame",
+        "residency and lifetime unknowns",
+        "eligible final-output boundary",
+        "controlled end-to-end comparison plan"
+      ],
+      "acceptance": [
+        "keep service-dependent intermediates internal",
+        "targeted GPU/NPU is not zero-copy proof",
+        "verify terminal fence and buffer ownership",
+        "retain exact timestamp/identity bits",
+        "separate kernel gains from product latency",
+        "verify flags in built artifacts rather than older docs"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+[
+  {
+    "name": "face_fit_prepare",
+    "sha256": "6e165c1753c33dc81825a8387fb7d928b3d734baaf8ce298a59e2cd753062ffe",
+    "bytes": 4724,
+    "operators": 18,
+    "operatorKinds": [
+      "CONCATENATION",
+      "DIV",
+      "GATHER",
+      "MUL",
+      "SUB",
+      "SUM"
+    ],
+    "backend": "CPU",
+    "canonicalAssetSha256": "3ea041bf50a088cfe334e0586ae4869a97f7074c19aa70042a057a8c67512dbc",
+    "inputs": [
+      {
+        "name": "targets",
+        "shape": [
+          1,
+          1,
+          33,
+          3
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "covariance",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      {
+        "name": "centers",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ]
+      }
+    ]
+  },
+  {
+    "name": "face_fit_bridge",
+    "sha256": "428f9fbb8984fabde2bc6adcdb58d2466fd519efc4f1cf1c21048a2a2f3da83b",
+    "bytes": 18460,
+    "operators": 98,
+    "operatorKinds": [
+      "ABS",
+      "ADD",
+      "BATCH_MATMUL",
+      "CONCATENATION",
+      "DIV",
+      "GATHER",
+      "GREATER",
+      "LESS",
+      "LESS_EQUAL",
+      "LOGICAL_AND",
+      "MUL",
+      "RESHAPE",
+      "SELECT_V2",
+      "SLICE",
+      "SUB",
+      "SUM"
+    ],
+    "backend": "CPU",
+    "canonicalAssetSha256": "3ea041bf50a088cfe334e0586ae4869a97f7074c19aa70042a057a8c67512dbc",
+    "inputs": [
+      {
+        "name": "targets",
+        "shape": [
+          1,
+          1,
+          33,
+          3
+        ]
+      },
+      {
+        "name": "centers",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "name": "u",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      {
+        "name": "vt",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      {
+        "name": "projected",
+        "shape": [
+          1,
+          1,
+          33,
+          3
+        ]
+      },
+      {
+        "name": "depth",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "previous_scale",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "validity",
+        "shape": [
+          1,
+          1,
+          1,
+          2
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "scale",
+        "shape": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "name": "next_targets",
+        "shape": [
+          1,
+          1,
+          33,
+          3
+        ]
+      },
+      {
+        "name": "covariance",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      {
+        "name": "next_centers",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ]
+      }
+    ]
+  },
+  {
+    "name": "face_fit_finish",
+    "sha256": "171f72f6f88124ef108418f5edf83ec7db088b2b975be838ceeeea320a74d149",
+    "bytes": 14752,
+    "operators": 75,
+    "operatorKinds": [
+      "ABS",
+      "ADD",
+      "BATCH_MATMUL",
+      "CONCATENATION",
+      "DIV",
+      "GATHER",
+      "GREATER",
+      "LESS",
+      "LESS_EQUAL",
+      "LOGICAL_AND",
+      "MUL",
+      "RESHAPE",
+      "SELECT_V2",
+      "SLICE",
+      "SUB",
+      "SUM"
+    ],
+    "backend": "CPU",
+    "canonicalAssetSha256": "3ea041bf50a088cfe334e0586ae4869a97f7074c19aa70042a057a8c67512dbc",
+    "inputs": [
+      {
+        "name": "targets",
+        "shape": [
+          1,
+          1,
+          33,
+          3
+        ]
+      },
+      {
+        "name": "centers",
+        "shape": [
+          1,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "name": "u",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      {
+        "name": "vt",
+        "shape": [
+          1,
+          1,
+          3,
+          3
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "pose",
+        "shape": [
+          1,
+          1,
+          4,
+          4
+        ]
+      }
+    ]
+  }
+]

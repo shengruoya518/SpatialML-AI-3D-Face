@@ -1,0 +1,16 @@
+The Hornet (Military Helmet)
+Author: nip88nip https://sketchfab.com/nip88nip
+Source: https://sketchfab.com/3d-models/the-hornet-military-helmet-1ea96998b36b426b9ae3a3eb994c9e89
+License: Creative Commons Attribution 4.0 International
+https://creativecommons.org/licenses/by/4.0/
+Reused from the local PICO Spatial SDK sample's Model/helmet2.glb.
+The original GLB and materials are unchanged. The app applies a uniform fit and
+face-local positioning at runtime.
+
+Sentinel helmet (sentinel-helmet.glb)
+Provided by the user from /Users/bytedance/Downloads/sentinel-helmet.glb.
+SHA-256: 7a0c46a03d56d866abe8be4be06ea31d5953b5cdb21d16a424f2fc13116210db
+The supplied GLB, materials, geometry and authored hinge are unchanged.
+The app preserves its intrinsic scale, aligns its authored reference head center
+to the face-pose origin, and rotates FaceplateHinge using the supplied motion metadata.
+No additional source or license attribution was provided for this asset.

@@ -1,0 +1,11 @@
+{
+  "source_workspace": "/Users/bytedance/Documents/Projects/SpatialML/Unity/To-Public/SecureMR-Unity-Sample-Private-worktrees/dev-pipeline_zoo",
+  "files": {
+    "Tools/FaceLandmarker/registration_lab.py": "1b16d990a48aa950aa01ff21ba70da5fb71af60296995eca828acb8631a5d8bb",
+    "Tools/FaceLandmarker/validate_registration_lab.py": "c83029292372dea064f556ea8972040da6123d9edc8d26cc01026bee5d539817",
+    "Assets/FaceLandmarker/FaceLandmarkerCameraProjection.cs": "38d718b437ece698f607603c91a08a307be18af6069ae9c41fbfb7349762e247",
+    "Assets/FaceLandmarker/FaceLandmarkerDiagnostics.cs": "c6dc0c5b63acba62ec5f46af41dadca4279c0c353859ea2cc0583ffa22671dba",
+    "docs/face-registration-lab-2026-10-27.md": "b0a9e5b375cef174a825ea8364c1ef6a2b95b4a730f4c463fe2f8e5cafc1ad75"
+  },
+  "adaptation": "Kotlin schema 2 uses service/Stage vertices, actual per-frame service K, capture-time public HMD callback history, and no Unity Z reflection. Per-eye render matrices unavailable."
+}

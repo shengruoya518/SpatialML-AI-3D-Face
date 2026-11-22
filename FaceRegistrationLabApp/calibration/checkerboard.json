@@ -1,0 +1,16 @@
+{
+  "inner_corners": [
+    8,
+    6
+  ],
+  "square_metres": 0.02,
+  "paper_mm": [
+    210,
+    297
+  ],
+  "board_mm": [
+    180,
+    140
+  ],
+  "pdf_sha256": "01633e97c4c6378416b4234323fc85a39ce17920556b1f819ed490ce52b532cd"
+}

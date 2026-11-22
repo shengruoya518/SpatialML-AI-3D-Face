@@ -1,0 +1,2 @@
+# Normalize all shell files to LF in the repository
+*.sh text eol=lf

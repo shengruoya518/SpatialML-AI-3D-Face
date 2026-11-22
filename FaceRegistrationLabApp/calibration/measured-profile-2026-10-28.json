@@ -1,0 +1,60 @@
+{
+  "status": "EXPERIMENTAL_CANDIDATE_REQUIRES_VALIDATION",
+  "source_size": [
+    3248,
+    2464
+  ],
+  "source_intrinsics": [
+    [
+      2642.704699074891,
+      0.0,
+      1672.3769186460834
+    ],
+    [
+      0.0,
+      2036.9552646219895,
+      1230.3375545403937
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "preserve_existing_B_image_transform": [
+    [
+      0.7673501372337341,
+      0,
+      377.70703125
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ]
+  ],
+  "effective_virtual_intrinsics": [
+    [
+      2027.8798135033517,
+      0,
+      1661.0056892796015
+    ],
+    [
+      0,
+      2036.9552646219895,
+      1230.3375545403937
+    ],
+    [
+      0,
+      0,
+      1
+    ]
+  ],
+  "contract": "Use K_virtual = A * K_source when detector/landmarker crops include A. Do not insert source K directly into the virtual-image geometry path.",
+  "boundary": "Derived from 10 sharp checkerboard images, below the 12-view acceptance threshold; 9 samples fail full readback-motion gate. No app calibration was changed."
+}

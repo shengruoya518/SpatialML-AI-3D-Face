@@ -1,0 +1,10 @@
+{
+  "boardId": "physical-board-from-pilot-f5e56b",
+  "innerCorners": [8, 6],
+  "fiveSquareHorizontalMm": 100.0,
+  "fiveSquareVerticalMm": 100.0,
+  "orientationLabel": "Physical top-left outside the pattern; label placement must be confirmed before registration observations",
+  "orientationLabelConfirmed": false,
+  "measurementSource": "User reported horizontal 100 mm and vertical 100 mm across five squares after the first board check",
+  "pilotSession": "2026-11-06T00-49-11.741979Z-f5e56b"
+}

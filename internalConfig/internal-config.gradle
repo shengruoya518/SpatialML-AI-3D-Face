@@ -1,0 +1,62 @@
+def keystorePropsFile = rootProject.file("internalConfig/keystore.properties")
+
+if (keystorePropsFile.exists()) {
+    def props = new Properties()
+    keystorePropsFile.withInputStream { props.load(it) }
+
+    // Configure signing configs BEFORE afterEvaluate
+    android {
+        signingConfigs {
+            release {
+                storeFile rootProject.file("internalConfig/release-keystore.jks")
+                storePassword props['storePassword']
+                keyAlias props['keyAlias']
+                keyPassword props['keyPassword']
+            }
+        }
+
+        buildTypes {
+            release {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+}
+
+// Configure APK output naming BEFORE afterEvaluate
+android.applicationVariants.all { variant ->
+    variant.outputs.all { output ->
+        def appName = variant.applicationId.split("\\.").last()
+        def forced = project.findProperty("forceApkName")
+
+        def fileName = forced ?
+                "${appName}-${forced}.apk" :
+                "${appName}-${variant.versionName}-${variant.buildType.name}.apk"
+
+        outputFileName = fileName
+    }
+}
+
+// Optional license formatting
+if (project.hasProperty("enableLicense")) {
+    apply from: "${rootProject.rootDir}/internalConfig/license.gradle.kts"
+
+    afterEvaluate {
+        spotless {
+            def ktLicense = layout.buildDirectory.file("generated/license/license.kt")
+            def xmlLicense = layout.buildDirectory.file("generated/license/license.xml")
+
+            java {
+                licenseHeaderFile ktLicense
+            }
+            kotlin {
+                licenseHeaderFile ktLicense
+            }
+            format 'xml', {
+                target '**/*.xml'
+                targetExclude '**/internalConfig/**/*.xml', '**/src/main/res/xml/*.xml'
+                licenseHeaderFile(xmlLicense, '<[^!?]').skipLinesMatching('^<\\?xml.*\\?>')
+            }
+        }
+    }
+}

@@ -1,0 +1,46 @@
+# Gradle
+.gradle/
+build/
+
+# Android Studio
+*.iml
+.idea/
+.cxx/
+captures/
+.externalNativeBuild/
+
+# Local config
+local.properties
+google-services.json
+
+# Keystore
+*.jks
+*.keystore
+
+# Build outputs
+*.apk
+*.hprof
+
+# Logs & OS files
+*.log
+.DS_Store
+
+# Python tooling caches
+__pycache__/
+*.py[cod]
+
+# Kotlin compiler session caches
+.kotlin/
+
+# Spotless
+.spotless/
+
+# Agent verification output
+.scratch/
+artifacts/
+
+# Local device screenshots and logs
+.debug/
+
+# Signing credentials stay local
+internalConfig/keystore.properties
