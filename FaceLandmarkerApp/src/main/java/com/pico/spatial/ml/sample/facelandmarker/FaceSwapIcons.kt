@@ -78,4 +78,11 @@ internal object FaceSwapIcons {
                 "M20 21v-5h-5",
             ),
         )
+    val tune =
+        icon(
+            "tune",
+            listOf("M4 7h9M17 7h3M4 17h3M11 17h9", circle(15f, 7f, 2f), circle(9f, 17f, 2f)),
+        )
+    val reset = icon("reset", listOf("M4 12a8 8 0 1 0 2.6-5.9L4 8.5", "M4 3.5v5h5"))
+    val check = icon("check", listOf("M5 12.5l4.5 4.5L19 7.5"))
 }

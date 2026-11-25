@@ -71,6 +71,12 @@ internal class FaceLandmarkerRunner(
     @Volatile var tongueRequested = false
     @Volatile private var reacquireRequested = false
 
+    /**
+     * The wearer's manual trim in capture-head metres (+X right, +Y up), applied before
+     * head-to-Stage like [LabPoseCorrection] so it holds for any face at any head pose.
+     */
+    @Volatile var headShift: Pair<Float, Float> = 0f to 0f
+
     /** Drops the tracked face; the next frame runs the detector on whoever is in view. */
     fun reacquire() {
         reacquireRequested = true
@@ -220,10 +226,14 @@ internal class FaceLandmarkerRunner(
                     val registered =
                         if (!selectedOutputs.spatial) raw.withPoseCorrection(poseCorrection)
                         else if (headToStage != null) {
+                            val (right, up) = headShift
                             val transform =
                                 poseCorrection.serviceToStage(
                                     headToStage,
-                                    leftCameraToHead,
+                                    leftCameraToHead.copyOf().also {
+                                        it[3] += right
+                                        it[7] += up
+                                    },
                                     raw.captureCameraPose,
                                 )
                             if (raw.hasFace && !registrationLogged) {

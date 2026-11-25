@@ -60,9 +60,17 @@ fun FaceHelmetSample() {
     val poses = remember { StagePoseHistory() }
     val tracking = remember { FaceTrackingState() }
     val surfaces = remember { Channel<TrackedFace>(Channel.CONFLATED) }
-    val scene = remember { FaceHelmetScene(geometry) }
+    var adjustment by remember { mutableStateOf(FaceAdjustment.load(context)) }
+    var adjusting by remember { mutableStateOf(false) }
+    val scene = remember { FaceHelmetScene(geometry).also { it.fitScale = adjustment.scale } }
     val runner = remember {
         FaceLandmarkerRunner(context, backend = 2, poses = poses, lab = lab, helmetMode = true)
+            .also { it.headShift = adjustment.headShift }
+    }
+    val adjust: (FaceAdjustment) -> Unit = { next ->
+        adjustment = next
+        scene.fitScale = next.scale
+        runner.headShift = next.headShift
     }
     var initialized by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf<String?>(null) }
@@ -194,12 +202,16 @@ fun FaceHelmetSample() {
                         selected = effect,
                         enabled = initialized,
                         paused = paused,
+                        adjusting = adjusting,
+                        adjustment = adjustment,
                         hint =
                             error
                                 ?: when {
                                     !permission -> "需要相机权限才能识别人脸"
                                     paused -> "已暂停"
                                     !initialized -> "正在加载特效…"
+                                    adjusting && visible -> "拖动滑块，让特效对准对方的脸"
+                                    adjusting -> "先看向一个人，再拖动滑块"
                                     visible -> null
                                     status.startsWith("SpatialML error") ||
                                         status.startsWith("Error") -> "识别中断了，请重新打开应用"
@@ -233,6 +245,12 @@ fun FaceHelmetSample() {
                             scene.hide()
                             visible = false
                         },
+                        onAdjusting = { open ->
+                            adjusting = open
+                            if (!open) adjustment.save(context)
+                        },
+                        onAdjust = adjust,
+                        onAdjustFinished = { adjustment.save(context) },
                     )
                 }
             },
